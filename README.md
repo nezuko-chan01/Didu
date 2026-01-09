@@ -124,7 +124,30 @@
         }
 
     </style>
-</head>
+</head><style>
+/* Floating hearts animation */
+.heart {
+  position: fixed;
+  width: 18px; height: 18px;
+  background-color: #ff77c8;
+  transform: rotate(45deg);
+  animation: floatUp 6s infinite;
+  opacity: 0.9;
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 18px; height: 18px;
+  background-color: #ff77c8;
+  border-radius: 50%;
+}
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+}
+</style>
 <body><!-- Floating hearts script -->
 <script>
   for (let i = 0; i < 20; i++) {
@@ -199,7 +222,33 @@
         }
     </script>
 
-</body><!-- Floating hearts script -->
+</body><!<!-- Floating hearts script -->
+<script>
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+<script>
+  window.onload = function() {
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+    (function frame() {
+      confetti({
+        particleCount: 60,
+        spread: 130,
+        origin: { x: Math.random(), y: Math.random() - 0.2 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  };
+</script>- Floating hearts script -->
 <script>
   for (let i = 0; i < 20; i++) {
     const heart = document.createElement('div');
