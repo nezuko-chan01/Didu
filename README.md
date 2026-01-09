@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><style>
+/* Floating hearts animation */
+.heart {
+  position: fixed;
+  width: 20px; height: 20px;
+  background-color: #ff69b4;
+  transform: rotate(45deg);
+  animation: floatUp 6s infinite;
+  opacity: 0.8;
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 20px; height: 20px;
+  background-color: #ff69b4;
+  border-radius: 50%;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: -10px; top: 0; }
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(45deg); opacity: 0; }
+}
+</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday 🎉💖</title>
@@ -102,7 +125,34 @@
 
     </style>
 </head>
-<body>
+<body><!-- Floating hearts script -->
+<script>
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 3 + Math.random() * 4 + "s";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- Confetti library (free + easy) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+<script>
+  // Launches confetti for 3 seconds when page opens
+  window.onload = function() {
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+    (function frame() {
+      confetti({
+        particleCount: 50,
+        spread: 120,
+        origin: { x: Math.random(), y: Math.random() - 0.2 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  };
+</script>
 
     <!-- Press here button -->
     <div class="popup-btn" id="openPopup">🎈 Press Here for a Surprise 🎈</div>
@@ -149,5 +199,32 @@
         }
     </script>
 
-</body>
+</body><!-- Floating hearts script -->
+<script>
+  for (let i = 0; i < 20; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 3 + Math.random() * 4 + "s";
+    document.body.appendChild(heart);
+  }
+</script>
+
+<!-- Confetti library (free + easy) -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
+<script>
+  // Launches confetti for 3 seconds when page opens
+  window.onload = function() {
+    let duration = 3 * 1000;
+    let end = Date.now() + duration;
+    (function frame() {
+      confetti({
+        particleCount: 50,
+        spread: 120,
+        origin: { x: Math.random(), y: Math.random() - 0.2 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+  };
+</script>
 </html>
